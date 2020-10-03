@@ -8,7 +8,9 @@
           type="text"
           v-model.trim="email"
           :class="{invalid:
-            ($v.email.$dirty && !$v.email.required) || ($v.email.$dirty && !$v.email.email)}"
+            ($v.email.$dirty && !$v.email.required) ||
+            ($v.email.$dirty && !$v.email.email)}"
+          @blur="$v.email.$touch()"
         >
         <label for="email">Email</label>
         <small
@@ -18,7 +20,7 @@
           The email field should not be empty
         </small>
         <small
-          v-if="$v.email.$dirty && !$v.email.email"
+          v-else-if="$v.email.$dirty && !$v.email.email"
           class="helper-text invalid"
         >
           Enter the correct email address
@@ -31,6 +33,7 @@
           v-model.trim="password"
           :class="{invalid:
             ($v.password.$dirty && !$v.password.required)}"
+          @blur="$v.password.$touch()"
         >
         <label for="password">Password</label>
         <small
@@ -61,7 +64,7 @@
 </template>
 
 <script>
-import {email, required, minLength} from 'vuelidate/lib/validators'
+import {email, required} from 'vuelidate/lib/validators'
 
 export default {
   name: 'Login',
