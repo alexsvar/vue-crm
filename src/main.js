@@ -11,6 +11,7 @@ import messagePlugin from '@/utils/message.plugin'
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/database'
+
 firebase.initializeApp({
   apiKey: "AIzaSyDNQcvaq-wbvrqfY7Zd6VYRBqPObrTr_gU",
   authDomain: "vue-crm-9855c.firebaseapp.com",
