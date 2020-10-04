@@ -20,7 +20,7 @@ export default {
   name: "Sidebar",
   data: () => ({
     links: [
-      {title: 'Account', url: '/', exact: true},
+      {title: 'Bill', url: '/', exact: true},
       {title: 'History', url: '/history'},
       {title: 'Planning', url: '/planning'},
       {title: 'New Note', url: '/note'},
