@@ -1,15 +1,19 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>Amount</h3>
+      <h3>Bill</h3>
 
       <button class="btn waves-effect waves-light btn-small">
         <i class="material-icons">refresh</i>
       </button>
     </div>
 
-    <div class="row">
-      <HomeBill />
+    <Loader v-if="loading" />
+
+    <div v-else class="row">
+      <HomeBill
+        :rates="currency.rates"
+      />
 
       <HomeCurrency />
     </div>
@@ -22,6 +26,14 @@ import HomeCurrency from '@/components/HomeCurrency'
 
 export default {
   name: 'Home',
+  data: () => ({
+    loading: true,
+    currency: null
+  }),
+  async mounted() {
+    this.currency = await this.$store.dispatch('fetchCurrency')
+    this.loading = false
+  },
   components: {
     HomeBill, HomeCurrency
   }
