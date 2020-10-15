@@ -11,8 +11,7 @@
             id="name"
             type="text"
             v-model="title"
-            :class="{invalid:
-              $v.title.$dirty && !$v.title.required}"
+            :class="{invalid: $v.title.$dirty && !$v.title.required}"
             @blur="$v.title.$touch()"
           >
           <label for="name">Name</label>
@@ -29,8 +28,7 @@
             id="limit"
             type="number"
             v-model.number="limit"
-            :class="{invalid:
-              $v.limit.$dirty && !$v.limit.minValue}"
+            :class="{invalid: $v.limit.$dirty && !$v.limit.minValue}"
             @blur="$v.limit.$touch()"
           >
           <label for="limit">Limit</label>
@@ -38,7 +36,7 @@
             v-if="$v.limit.$dirty && !$v.limit.minValue"
             class="helper-text invalid"
           >
-            Minimal value is {{numLimit}}.
+            Minimal value is {{limit}}
           </span>
         </div>
 
@@ -58,8 +56,7 @@ export default {
   name: 'CategoryCreate',
   data: () => ({
     title: '',
-    limit: 10,
-    numLimit: 10
+    limit: 100
   }),
   validations: {
     title: {
