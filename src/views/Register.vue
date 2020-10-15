@@ -49,7 +49,7 @@
           class="helper-text invalid"
           v-else-if="$v.password.$dirty && !$v.password.minLength"
         >
-          Min length of password is {{ this.numPassword }}
+          Min length of password is {{ numPassword }}
           Now it is {{ password.length }}
         </small>
       </div>
