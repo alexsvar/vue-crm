@@ -14,7 +14,7 @@
       </main>
 
       <div class="fixed-action-btn">
-        <router-link class="btn-floating btn-large red" to="/note">
+        <router-link class="btn-floating btn-large lighten-1 green" to="/note">
           <i class="large material-icons">add</i>
         </router-link>
       </div>
