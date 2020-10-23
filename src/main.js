@@ -4,6 +4,7 @@ import store from './store'
 import Vuelidate from 'vuelidate/src';
 import App from './App.vue'
 import './registerServiceWorker'
+import tooltipDirective from '@/directives/tooltip.directive'
 import dateFilter from '@/filters/date.filter'
 import currencyFilter from "@/filters/currency.filter";
 import 'materialize-css/dist/js/materialize.min'
@@ -41,4 +42,5 @@ Vue.use(Vuelidate)
 Vue.filter('date', dateFilter)
 Vue.filter('currency', currencyFilter)
 Vue.use(messagePlugin)
+Vue.directive('tooltip', tooltipDirective)
 Vue.component('Loader', Loader)
