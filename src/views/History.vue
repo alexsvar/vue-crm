@@ -14,35 +14,44 @@
     </p>
 
     <section v-else>
-      <HistoryTable :notes="notes" />
+      <HistoryTable :notes="items" />
+
+      <Paginate
+        v-model="page"
+        :page-count="pageCount"
+        :click-handler="pageChangeHandler"
+        :prev-text="'Prev'"
+        :next-text="'Next'"
+        :container-class="'pagination center'"
+        :page-class="'waves-effect'"
+      />
     </section>
   </div>
 </template>
 
 <script>
 import HistoryTable from '@/components/HistoryTable'
+import paginationMixin from '@/mixins/pagination.mixin'
 
 export default {
   name: 'History',
   data: () => ({
     loading: true,
-    notes: [],
-    categories: []
+    notes: []
   }),
+  mixins: [paginationMixin],
   async mounted() {
-    // this.notes = await this.$store.dispatch('fetchNotes')
-    const notes = await this.$store.dispatch('fetchNotes')
-    this.categories = await this.$store.dispatch('fetchCategories')
+    this.notes = await this.$store.dispatch('fetchNotes')
+    const categories = await this.$store.dispatch('fetchCategories')
 
-    this.notes = notes.map(note => {
+    this.setupPagination(this.notes.map(note => {
       return {
         ...note,
-        categoryName: this.categories.find(category => category.id === note.categoryId).title,
+        categoryName: categories.find(category => category.id === note.categoryId).title,
         typeClass: note.type === 'income' ? 'green' : 'red',
         typeText :note.type === 'income' ? 'Income' : 'Outcome'
       }
-    })
-
+    }))
     this.loading = false
   },
   components: {
