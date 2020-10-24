@@ -8,46 +8,46 @@
       <canvas></canvas>
     </div>
 
-    <section>
-      <table>
-        <thead>
-        <tr>
-          <th>#</th>
-          <th>Amount</th>
-          <th>Date</th>
-          <th>Category</th>
-          <th>Type</th>
-          <th>Open</th>
-        </tr>
-        </thead>
+    <Loader v-if="loading" />
+    <p class="center" v-else-if="!notes.length">No notes yet.&nbsp;
+      <router-link to="/note">Create new note</router-link>
+    </p>
 
-        <tbody>
-        <tr>
-          <td>1</td>
-          <td>1212</td>
-          <td>12.12.32</td>
-          <td>name</td>
-          <td>
-            <span class="white-text badge red">Outcom</span>
-          </td>
-          <td>
-            <button class="btn-small btn">
-              <i class="material-icons">open_in_new</i>
-            </button>
-          </td>
-        </tr>
-        </tbody>
-      </table>
+    <section v-else>
+      <HistoryTable :notes="notes" />
     </section>
   </div>
 </template>
 
 <script>
+import HistoryTable from '@/components/HistoryTable'
+
 export default {
-name: 'History'
+  name: 'History',
+  data: () => ({
+    loading: true,
+    notes: [],
+    categories: []
+  }),
+  async mounted() {
+    // this.notes = await this.$store.dispatch('fetchNotes')
+    const notes = await this.$store.dispatch('fetchNotes')
+    this.categories = await this.$store.dispatch('fetchCategories')
+
+    this.notes = notes.map(note => {
+      return {
+        ...note,
+        categoryName: this.categories.find(category => category.id === note.categoryId).title,
+        typeClass: note.type === 'income' ? 'green' : 'red',
+        typeText :note.type === 'income' ? 'Income' : 'Outcome'
+      }
+    })
+
+    this.loading = false
+  },
+  components: {
+    HistoryTable
+  }
 }
 </script>
 
-<style scoped>
-
-</style>
