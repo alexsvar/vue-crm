@@ -1,0 +1,11 @@
+{
+  "ProfileTitle": "Profile",
+  "Name": "Name",
+  "Update": "Update",
+  "Message_EnterName": "The name field should not be empty",
+  "Menu_Bill": "Bill",
+  "Menu_History": "History",
+  "Menu_Planning": "Planning",
+  "Menu_NewNote": "New Note",
+  "Menu_Categories": "Categories"
+}

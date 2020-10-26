@@ -1,0 +1,11 @@
+{
+  "ProfileTitle": "Профиль",
+  "Name": "Имя",
+  "Update": "Обновить",
+  "Message_EnterName": "Поле \"имя\" не должно быть пустым",
+  "Menu_Bill": "Счёт",
+  "Menu_History": "История",
+  "Menu_Planning": "Планирование",
+  "Menu_NewNote": "Новая запись",
+  "Menu_Categories": "Категории"
+}

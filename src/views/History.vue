@@ -8,13 +8,13 @@
       <canvas ref="canvas"></canvas>
     </div>
 
-    <Loader v-if="loading" />
+    <Loader v-if="loading"/>
     <p class="center" v-else-if="!notes.length">No notes yet.&nbsp;
       <router-link to="/note">Create new note</router-link>
     </p>
 
     <section v-else>
-      <HistoryTable :notes="items" />
+      <HistoryTable :notes="items"/>
 
       <Paginate
         v-model="page"
@@ -56,7 +56,7 @@ export default {
           ...note,
           categoryName: categories.find(category => category.id === note.categoryId).title,
           typeClass: note.type === 'income' ? 'green' : 'red',
-          typeText :note.type === 'income' ? 'Income' : 'Outcome'
+          typeText: note.type === 'income' ? 'Income' : 'Outcome'
         }
       }))
       this.renderChart({
